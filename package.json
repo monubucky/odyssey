@@ -1,0 +1,17 @@
+{
+  "name": "odyssey",
+  "private": true,
+  "packageManager": "pnpm@10",
+  "scripts": {
+    "dev": "turbo run dev",
+    "dev:dashboard": "turbo run dev --filter=dashboard",
+    "dev:backend": "turbo run dev --filter=backend",
+    "gen:contract": "turbo run gen:contract",
+    "lint": "turbo run lint",
+    "typecheck": "turbo run typecheck",
+    "test": "turbo run test"
+  },
+  "devDependencies": {
+    "turbo": "latest"
+  }
+}

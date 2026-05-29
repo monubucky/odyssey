@@ -1,0 +1,92 @@
+# =========================
+# Dependencies
+# =========================
+node_modules
+.pnpm-store
+
+# =========================
+# Build Output
+# =========================
+dist
+build
+.next
+out
+coverage
+
+# Expo / React Native
+.expo
+.expo-shared
+web-build
+
+# Turborepo
+.turbo
+
+# =========================
+# Environment Files
+# =========================
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# =========================
+# Logs
+# =========================
+logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# =========================
+# OS Files
+# =========================
+.DS_Store
+Thumbs.db
+
+# =========================
+# IDE / Editor
+# =========================
+.vscode
+.idea
+
+# =========================
+# TypeScript
+# =========================
+*.tsbuildinfo
+
+# =========================
+# Cloudflare / Wrangler
+# =========================
+.wrangler
+
+# =========================
+# Drizzle
+# =========================
+drizzle/meta
+
+# =========================
+# Generated API Clients
+# =========================
+packages/api-client/generated
+packages/types/generated
+
+# =========================
+# Test Coverage
+# =========================
+coverage
+
+# =========================
+# Cache
+# =========================
+.cache
+.tmp
+.temp
+
+# =========================
+# Misc
+# =========================
+*.pem
+*.pid
