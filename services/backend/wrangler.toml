@@ -1,0 +1,3 @@
+name = "backend"
+compatibility_date = "2026-05-29"
+main = "src/index.ts"
