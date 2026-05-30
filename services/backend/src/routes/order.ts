@@ -1,30 +1,27 @@
-import { OpenAPIHono, createRoute, z } from '@hono/zod-openapi'
+import { Hono } from "hono";
+import { orders } from "../data/orders";
 
-const app = new OpenAPIHono()
+const ordersRoute = new Hono();
 
-const OrderSchema = z.object({
-  id: z.string(),
-  status: z.string(),
-  total: z.number(),
-})
+ordersRoute.get("/", (c) => {
+  return c.json(orders);
+});
 
-const route = createRoute({
-  method: 'get',
-  path: '/orders',
-  responses: {
-    200: {
-      content: {
-        'application/json': {
-          schema: z.array(OrderSchema),
-        },
-      },
-      description: 'List orders',
-    },
-  },
-})
+ordersRoute.get("/:id", (c) => {
+  const id = c.req.param("id");
 
-app.openapi(route, async (c) => {
-  return c.json([], 200)
-})
+  const order = orders.find(
+    (o) => o.id === id
+  );
 
-export default app
+  if (!order) {
+    return c.json(
+      { message: "Order not found" },
+      404
+    );
+  }
+
+  return c.json(order);
+});
+
+export default ordersRoute;

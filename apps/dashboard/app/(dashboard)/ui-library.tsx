@@ -1,6 +1,5 @@
 import { ScrollView, Text, View } from "react-native";
 
-import DashboardLayout from "../../components/layout/DashboardLayout";
 import Button from "../../components/ui/Button";
 import Input from "../../components/ui/Input";
 import Card from "../../components/ui/Card";
@@ -9,7 +8,6 @@ import EmptyState from "../../components/ui/EmptyState";
 
 export default function UILibraryPage() {
   return (
-    <DashboardLayout>
       <ScrollView
         style={{
           flex: 1,
@@ -156,6 +154,5 @@ export default function UILibraryPage() {
 
         <EmptyState />
       </ScrollView>
-    </DashboardLayout>
   );
 }

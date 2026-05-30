@@ -8,12 +8,21 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   return (
-    <View style={{ flex: 1, flexDirection: "row" }}>
+    <View
+      style={{
+        flex: 1,
+        flexDirection: "row",
+        backgroundColor: "#0F1115",
+      }}
+    >
       <Sidebar />
 
       <View style={{ flex: 1 }}>
         <Topbar />
-        {children}
+
+        <View style={{ flex: 1 }}>
+          {children}
+        </View>
       </View>
     </View>
   );

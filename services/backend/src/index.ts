@@ -1,16 +1,29 @@
-import { OpenAPIHono } from '@hono/zod-openapi'
-import orders from './routes/order'
+import { Hono } from "hono";
+import { cors } from "hono/cors";
 
-const app = new OpenAPIHono()
+import ordersRoute from "./routes/order";
+import customersRoute from "./routes/customers";
+import menuRoute from "./routes/menu";
+import settingsRoute from "./routes/settings";
 
-app.route('/orders', orders)
+const app = new Hono();
 
-app.doc('/doc', {
-  openapi: '3.0.0',
-  info: {
-    title: 'Odyssey API',
-    version: '1.0.0',
-  },
-})
+app.use(
+  "*",
+  cors({
+    origin: "*",
+  })
+);
 
-export default app
+app.get("/", (c) => {
+  return c.json({
+    message: "Odyssey Backend Running",
+  });
+});
+
+app.route("/orders", ordersRoute);
+app.route("/customers", customersRoute);
+app.route("/menu", menuRoute);
+app.route("/settings", settingsRoute);
+
+export default app;

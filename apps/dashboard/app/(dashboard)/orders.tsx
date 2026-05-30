@@ -1,31 +1,46 @@
-import DashboardLayout from "../../components/layout/DashboardLayout";
-import OrdersFilters from "../../features/orders/components/OrdersFilters";
-import OrdersTable from "../../features/orders/components/OrdersTable";
+import { useEffect, useState } from "react";
 import { View, Text } from "react-native";
 
 export default function OrdersPage() {
+  const [orders, setOrders] = useState<any[]>([]);
+
+  useEffect(() => {
+    fetch("http://localhost:8787/orders")
+      .then((r) => r.json())
+      .then(setOrders);
+  }, []);
+
   return (
-    <DashboardLayout>
-      <View
+    <View style={{ padding: 24 }}>
+      <Text
         style={{
-          padding: 24,
+          color: "white",
+          fontSize: 24,
+          marginBottom: 20,
         }}
       >
-        <Text
+        Orders
+      </Text>
+
+      {orders.map((order) => (
+        <View
+          key={order.id}
           style={{
-            color: "white",
-            fontSize: 28,
-            fontWeight: "700",
-            marginBottom: 20,
+            backgroundColor: "#171A21",
+            padding: 16,
+            marginBottom: 12,
+            borderRadius: 12,
           }}
         >
-          Orders
-        </Text>
+          <Text style={{ color: "white" }}>
+            {order.customer}
+          </Text>
 
-        <OrdersFilters />
-
-        <OrdersTable />
-      </View>
-    </DashboardLayout>
+          <Text style={{ color: "#94A3B8" }}>
+            {order.status}
+          </Text>
+        </View>
+      ))}
+    </View>
   );
 }

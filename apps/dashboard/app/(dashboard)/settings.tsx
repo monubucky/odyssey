@@ -1,12 +1,10 @@
 import { View, Text, Switch } from "react-native";
 import { useState } from "react";
-import DashboardLayout from "../../components/layout/DashboardLayout";
 
 export default function SettingsPage() {
   const [enabled, setEnabled] = useState(true);
 
   return (
-    <DashboardLayout>
       <View style={{ padding: 24 }}>
         <Text
           style={{
@@ -35,6 +33,5 @@ export default function SettingsPage() {
           />
         </View>
       </View>
-    </DashboardLayout>
   );
 }

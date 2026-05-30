@@ -1,10 +1,8 @@
 import { View } from "react-native";
-import DashboardLayout from "../../components/layout/DashboardLayout";
 import KpiCard from "../../components/KpiCard";
 
 export default function HomeScreen() {
   return (
-    <DashboardLayout>
       <View
         style={{
           flexDirection: "row",
@@ -32,6 +30,5 @@ export default function HomeScreen() {
           value="105"
         />
       </View>
-    </DashboardLayout>
   );
 }
