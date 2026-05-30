@@ -5,11 +5,9 @@ import {
 
 const queryClient = new QueryClient();
 
-export function Providers({
+export default function Providers({
   children,
-}: {
-  children: React.ReactNode;
-}) {
+}: any) {
   return (
     <QueryClientProvider client={queryClient}>
       {children}
