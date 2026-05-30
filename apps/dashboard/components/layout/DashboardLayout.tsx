@@ -1,12 +1,14 @@
-import { View } from "react-native";
+import { View, ScrollView } from "react-native";
 import Sidebar from "./Sidebar";
 import Topbar from "./Topbar";
 
+type DashboardLayoutProps = {
+  children: React.ReactNode;
+};
+
 export default function DashboardLayout({
   children,
-}: {
-  children: React.ReactNode;
-}) {
+}: DashboardLayoutProps) {
   return (
     <View
       style={{
@@ -15,14 +17,32 @@ export default function DashboardLayout({
         backgroundColor: "#0F1115",
       }}
     >
+      {/* Sidebar */}
       <Sidebar />
 
-      <View style={{ flex: 1 }}>
+      {/* Main Content Area */}
+      <View
+        style={{
+          flex: 1,
+          backgroundColor: "#0F1115",
+        }}
+      >
+        {/* Top Navigation */}
         <Topbar />
 
-        <View style={{ flex: 1 }}>
+        {/* Page Content */}
+        <ScrollView
+          style={{
+            flex: 1,
+          }}
+          contentContainerStyle={{
+            padding: 24,
+            paddingBottom: 40,
+          }}
+          showsVerticalScrollIndicator={false}
+        >
           {children}
-        </View>
+        </ScrollView>
       </View>
     </View>
   );

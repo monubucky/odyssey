@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import { View, Text } from "react-native";
+import { View, Text, TextInput } from "react-native";
 
 export default function OrdersPage() {
   const [orders, setOrders] = useState<any[]>([]);
+  const [filter, setFilter] = useState("");
 
   useEffect(() => {
     fetch("http://localhost:8787/orders")
@@ -10,34 +11,61 @@ export default function OrdersPage() {
       .then(setOrders);
   }, []);
 
+  const filteredOrders = orders.filter((order) =>
+    order.status
+      .toLowerCase()
+      .includes(filter.toLowerCase())
+  );
+
   return (
-    <View style={{ padding: 24 }}>
+    <View>
       <Text
         style={{
           color: "white",
-          fontSize: 24,
-          marginBottom: 20,
+          fontSize: 32,
+          fontWeight: "700",
+          marginBottom: 24,
         }}
       >
         Orders
       </Text>
 
-      {orders.map((order) => (
+      {/* Filter Input */}
+      <TextInput
+        placeholder="Filter by status..."
+        placeholderTextColor="#94A3B8"
+        value={filter}
+        onChangeText={setFilter}
+        style={{
+          backgroundColor: "#171A21",
+          color: "white",
+          padding: 12,
+          borderRadius: 12,
+          marginBottom: 20,
+        }}
+      />
+
+      {/* Orders List */}
+      {filteredOrders.map((order) => (
         <View
           key={order.id}
           style={{
             backgroundColor: "#171A21",
             padding: 16,
-            marginBottom: 12,
             borderRadius: 12,
+            marginBottom: 12,
           }}
         >
           <Text style={{ color: "white" }}>
-            {order.customer}
+            Order #{order.id}
           </Text>
 
           <Text style={{ color: "#94A3B8" }}>
-            {order.status}
+            Status: {order.status}
+          </Text>
+
+          <Text style={{ color: "#10B981" }}>
+            ${order.total}
           </Text>
         </View>
       ))}

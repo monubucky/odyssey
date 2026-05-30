@@ -1,10 +1,11 @@
 import { Hono } from "hono";
 import { cors } from "hono/cors";
 
-import ordersRoute from "./routes/order";
-import customersRoute from "./routes/customers";
-import menuRoute from "./routes/menu";
-import settingsRoute from "./routes/settings";
+import orders from "./routes/orders";
+import customers from "./routes/customers";
+import menu from "./routes/menu";
+import settings from "./routes/settings";
+import dashboard from "./routes/dashboard";
 
 const app = new Hono();
 
@@ -15,15 +16,30 @@ app.use(
   })
 );
 
-app.get("/", (c) => {
-  return c.json({
-    message: "Odyssey Backend Running",
-  });
-});
+app.route(
+  "/dashboard",
+  dashboard
+);
 
-app.route("/orders", ordersRoute);
-app.route("/customers", customersRoute);
-app.route("/menu", menuRoute);
-app.route("/settings", settingsRoute);
+app.route("/orders", orders);
+
+app.route(
+  "/customers",
+  customers
+);
+
+app.route("/menu", menu);
+
+app.route(
+  "/settings",
+  settings
+);
+
+app.get("/", (c) =>
+  c.json({
+    message:
+      "Odyssey Backend Running",
+  })
+);
 
 export default app;

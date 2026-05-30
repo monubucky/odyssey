@@ -1,10 +1,21 @@
 import { Hono } from "hono";
-import { settings } from "../data/settings";
+import { settings } from "../data/store";
 
-const settingsRoute = new Hono();
+const app = new Hono();
 
-settingsRoute.get("/", (c) => {
+app.get("/", (c) =>
+  c.json(settings)
+);
+
+app.put("/", async (c) => {
+  const body = await c.req.json();
+
+  Object.assign(
+    settings,
+    body
+  );
+
   return c.json(settings);
 });
 
-export default settingsRoute;
+export default app;
